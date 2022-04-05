@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Project.Models.ScoreModel>
+@using Project.Models;
+@{
+    UserModel user = Session["user"] as UserModel;
+    ScoreModel myscore = Session["myscore"] as ScoreModel;
+}
+@{
+    ViewBag.Title = "CheckScore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Hi , @user.Name </h1>
+    <h3>Here's Your Detailed Score Overview</h3>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            English
+        </th>
+        <th>
+            Aptitude
+        </th>
+        <th>
+            Programming
+        </th>
+        <th>
+            Total
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayFor(model => myscore.English_Score)
+        </th>
+        <th>
+            @Html.DisplayFor(model => myscore.Apti_Score)
+        </th>
+        <th>
+            @Html.DisplayFor(model => myscore.Prog_Score)
+        </th>
+        <th>
+            @Html.DisplayFor(model => myscore.Total_Score)%
+        </th>
+        <th></th>
+    </tr>
+</table>
+<style>
+    table{
+        color:white;
+    }
+</style>

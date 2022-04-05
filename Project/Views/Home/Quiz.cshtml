@@ -1,0 +1,109 @@
+﻿@using Project.Models;
+@model Project.Models.AnswerModel
+
+@{
+    ViewBag.Title = "Quiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<QuestionModel> Model = Session["list"] as List<QuestionModel>;
+    string[] Subarr = { "English","Programming","Aptitude"};
+    string[] arr1 = {Model[0].A,Model[0].B,Model[0].C,Model[0].D };
+    string[] arr2 = {Model[1].A,Model[1].B,Model[1].C,Model[1].D };
+    string[] arr3 = {Model[2].A,Model[2].B,Model[2].C,Model[2].D };
+    string[] arr4 = {Model[3].A,Model[3].B,Model[3].C,Model[3].D };
+}
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.subject, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="">
+                <b>Please Select Subject Here</b> 
+                @Html.DropDownListFor(model => model.subject, new SelectList(Subarr),new { @class="myclass"})
+                @Html.ValidationMessageFor(model => model.subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.AnswerofQuestion1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Model[0].QID
+                @Model[0].Question<br />
+                @Html.DropDownListFor(model => model.AnswerofQuestion1, new SelectList(arr1),new { @class="myclass"})
+                @Html.ValidationMessageFor(model => model.AnswerofQuestion1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.AnswerofQuestion2, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Model[1].QID
+                @Model[1].Question<br />
+                @Html.DropDownListFor(model => model.AnswerofQuestion2, new SelectList(arr2),new { @class="myclass"})
+                @Html.ValidationMessageFor(model => model.AnswerofQuestion2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.AnswerofQuestion3, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Model[2].QID
+                @Model[2].Question<br />
+                @Html.DropDownListFor(model => model.AnswerofQuestion3, new SelectList(arr3),new { @class="myclass"})
+                @Html.ValidationMessageFor(model => model.AnswerofQuestion3, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.AnswerofQuestion4, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Model[3].QID
+                @Model[3].Question<br />
+                @Html.DropDownListFor(model => model.AnswerofQuestion4, new SelectList(arr4),new { @class="myclass"})
+                @Html.ValidationMessageFor(model => model.AnswerofQuestion4, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 ">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<style>
+    body{
+        color:white;
+    }
+    .myclass{
+        left:100%;
+        border-radius:5px;
+        margin :15px;
+        width:100px;
+        color:white;
+        background-color:black;
+    }
+    .col-md-10{
+        font-family:'Times New Roman';
+        font-size:20px;
+        border-radius:20px;
+        height:100px;
+        background-color:black;
+    }
+</style>

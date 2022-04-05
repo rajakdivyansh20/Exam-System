@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Project.Models.SubjectModel>
+@using Project.Models;
+@{
+    UserModel user = Session["user"] as UserModel;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron myjumbo">
+    <h1>Hi , @user.Name </h1>
+    <h3>Welcome to MyScore</h3>
+</div>
+
+
+
+
+
+<table class="table">
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.ActionLink("Start Test", "Quiz", new {id=item.SubjectID} , new { @class="myaction"}) 
+            </td>
+        </tr>
+    }
+
+</table>
+<style>
+    #Start-btn{
+        background-color:black;
+        color:white;
+        padding:4px;
+        border:1px solid black;
+        border-radius:2px;
+    }
+    table {
+        color: gold;
+        margin: 10px;
+        border:none;
+    }
+    tr{
+
+        height:60px;
+        align-items:center;
+    }
+    tr:hover{
+        background-color:darkgrey;
+    }
+    td{
+        align-self:center;
+    }
+    
+
+</style>
